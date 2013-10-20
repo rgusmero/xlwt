@@ -41,7 +41,6 @@ class Formula(object):
         '''
         return struct.pack("<H", len(self.__parser.rpn)) + self.__parser.rpn
 
-# RGRGRGRGRGRGRGRGRG
 class Formula3D(object):
 
     def __init__(self,range1,range2=None):
@@ -85,4 +84,3 @@ class Formula3D(object):
         return self.__rpn
 
 
-# RGRGRGRGRGRGRGRGRG

@@ -39,9 +39,7 @@ import Bitmap
 import Style
 import tempfile
 
-# RGRGRGRGRGRGRGRGRG
 import ExcelFormula
-# RGRGRGRGRGRGRGRGRG
 
 class Worksheet(object):
 
@@ -201,9 +199,7 @@ class Worksheet(object):
         self.__flushed_rows = {}
         self.__row_visible_levels = 0
 
-# RGRGRGRGRGRGRGRGRG
         self.__definednames={}
-# RGRGRGRGRGRGRGRGRG
 
     #################################################################
     ## Properties, "getters", "setters"
@@ -1031,7 +1027,6 @@ class Worksheet(object):
     ## Methods
     ##################################################################
 
-# RGRGRGRGRGRGRGRGRG
     def _get_name_records(self):
 
         sheet_index=self.parent._get_sheet_idx_by_name(self.__name.lower())
@@ -1105,7 +1100,6 @@ class Worksheet(object):
 
         self.add_definedname(0x07,formula)
 
-# RGRGRGRGRGRGRGRGRG
 
     def get_parent(self):
         return self.__parent

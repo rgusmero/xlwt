@@ -2334,10 +2334,7 @@ class NameRecord(BiffRecord):
         if type(name) == int:
             uname = chr(name)
         else:
-# RGRGRGRGRGRGRGRGRG
             uname = upack1(unicode(name))[2:]
-#            uname = upack1(name)[1:]
-# RGRGRGRGRGRGRGRGRG
         uname_len = len(uname)
 
         #~ self._rec_data = pack('<HBBHHHBBBB%ds%ds' % (uname_len, len(rpn)), options, keyboard_shortcut, uname_len, len(rpn), 0x0000, sheet_index, len(menu_text), len(desc_text), len(help_text), len(status_text), uname, rpn) + menu_text + desc_text + help_text + status_text

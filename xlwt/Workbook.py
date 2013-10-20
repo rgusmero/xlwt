@@ -91,9 +91,7 @@ class Workbook(object):
         self._xcall_supbookx = None
         self._xcall_supbook_ref = None
 
-# RGRGRGRGRGRGRGRGRG
         self.__definednames={}
-# RGRGRGRGRGRGRGRGRG
 
 
     #################################################################
@@ -598,7 +596,6 @@ class Workbook(object):
             pieces.append(externsheet_record)
         return ''.join(pieces)
 
-# RGRGRGRGRGRGRGRGRG
     def __definedname_rec(self):
 
         # Sheet-Local names
@@ -642,8 +639,6 @@ class Workbook(object):
         self.add_sheet_reference(formula)
         self.__definednames[name]=formula
 
-# RGRGRGRGRGRGRGRGRG
-
     def __sst_rec(self):
         return self.__sst.get_biff_record()
 
@@ -683,15 +678,10 @@ class Workbook(object):
         country            = self.__country_rec()
         all_links          = self.__all_links_rec()
 
-# RGRGRGRGRGRGRGRGRG
-#        shared_str_table   = self.__sst_rec()
-#        after = country + all_links + shared_str_table
-
         definedname=self.__definedname_rec()
 
         shared_str_table   = self.__sst_rec()
         after = country + all_links + definedname + shared_str_table
-# RGRGRGRGRGRGRGRGRG
 
         ext_sst = self.__ext_sst_rec(0) # need fake cause we need calc stream pos
         eof = self.__eof_rec()
@@ -706,13 +696,8 @@ class Workbook(object):
 
         bundlesheets = self.__boundsheets_rec(len(before), len(after)+len(ext_sst)+len(eof), sheet_biff_lens)
 
-# RGRGRGRGRGRGRGRGRG
-#        sst_stream_pos = len(before) + len(bundlesheets) + len(country)  + len(all_links)
-#        ext_sst = self.__ext_sst_rec(sst_stream_pos)
         sst_stream_pos = len(before) + len(bundlesheets) + len(country)  + len(all_links) + len(definedname)
         ext_sst = self.__ext_sst_rec(sst_stream_pos)
-
-# RGRGRGRGRGRGRGRGRG
 
         return before + bundlesheets + after + ext_sst + eof + sheets
 
