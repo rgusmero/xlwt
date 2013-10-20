@@ -1104,8 +1104,8 @@ class Worksheet(object):
     def get_parent(self):
         return self.__parent
 
-    def write(self, r, c, label="", style=Style.default_style):
-        self.row(r).write(c, label, style)
+    def write(self, r, c, label="", style=Style.default_style, formula_result=None):
+        self.row(r).write(c, label, style, formula_result)
 
     def write_rich_text(self, r, c, rich_text_list, style=Style.default_style):
         self.row(r).set_cell_rich_text(c, rich_text_list, style)

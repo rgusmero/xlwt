@@ -1591,9 +1591,32 @@ class FormulaRecord(BiffRecord):
     """
     _REC_ID = 0x0006
 
-    def __init__(self, row, col, xf_index, rpn, calc_flags=0):
-        self._rec_data = pack('<3HQHL', row, col, xf_index, 0xFFFF000000000003, calc_flags & 3, 0) + rpn
+    def __init__(self, row, col, xf_index, rpn, calc_flags=0, frmla_result=None):
 
+        if frmla_result is None:
+            result=pack('<B5BH',*([0x03]+5*[0x00]+[0xFFFF]))
+        if isinstance(frmla_result, basestring):
+            result=pack('<B5BH',*([0x00]+5*[0x00]+[0xFFFF]))
+        elif isinstance(frmla_result, bool):
+            result=pack('<BBB3BH',*([0x01]+1*[0x00]+[frmla_result]+3*[0x00]+[0xFFFF]))
+        elif isinstance(frmla_result,float):
+            result=pack('<d',frmla_result)
+
+        self._rec_data = pack('<3H8sHL', row, col, xf_index, result, calc_flags & 3, 0) + rpn
+
+
+class StringRecord(BiffRecord):
+    """
+    This record stores the result of a string formula. It occurs directly after a string formula
+
+    Offset Size Contents
+    0      var. Non-empty Unicode string, 16-bit string length
+    """
+    _REC_ID = 0x0207
+
+    def __init__(self, s):
+
+        self._rec_data = upack2(s)
 
 class GutsRecord(BiffRecord):
     """
